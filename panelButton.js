@@ -191,7 +191,7 @@ const SpTrayButton = GObject.registerClass(
 
         //move the label to its new location
         _positionChanged() {
-            this.container.get_parent().remove_actor(this.container);
+            this.container.get_parent().remove_child(this.container);
 
             let positions = [Main.panel._leftBox, Main.panel._centerBox, Main.panel._rightBox];
 
