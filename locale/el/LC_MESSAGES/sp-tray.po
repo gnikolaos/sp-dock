@@ -1,0 +1,121 @@
+# Greek translations for sp-tray package.
+# This file is distributed under the same license as the sp-tray package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-11 14:02+0200\n"
+"PO-Revision-Date: 2026-04-11 14:02+0200\n"
+"Last-Translator: gnikolaos <https://www.gnikolaos.gr>\n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, {album} for podcasts"
+msgstr "Έγκυρα κείμενα κράτησης θέσης: {track}, {artist}, {album} για τραγούδια; {track}, {album} για podcasts"
+
+msgid "Use {pbctr} to show playback modes"
+msgstr "Χρησιμοποιήσε {pbctr} για να εμφανίσεις τη λειτουργία αναπαραγωγής"
+
+msgid "Display format for songs"
+msgstr "Μορφή εμφάνισης για τραγούδια"
+
+msgid "Display format for podcasts"
+msgstr "Μορφή εμφάνισης για ηχοεκπομπές"
+
+msgid "Display mode"
+msgstr "Λειτουργία εμφάνισης"
+
+msgid "Static"
+msgstr "Στατικό"
+
+msgid "Marquee"
+msgstr "Κυλιόμενο"
+
+msgid "Position in panel"
+msgstr "Θέση στη καρτέλα"
+
+msgid "Left"
+msgstr "Αριστερά"
+
+msgid "Center"
+msgstr "Κέντρο"
+
+msgid "Right"
+msgstr "Δεξιά"
+
+msgid "Show Spotify logo"
+msgstr "Εμφάνιση Spotify λογότυπου"
+
+msgid "Don't show"
+msgstr "Μην εμφανίζεις"
+
+msgid "Left of label"
+msgstr "Αριστερά της ετικέτας"
+
+msgid "Right of label"
+msgstr "Δεξιά της ετικέτας"
+
+msgid "Static display settings"
+msgstr "Ρυθμίσεις στατικής εμφάνισης"
+
+msgid "Max. artist field length"
+msgstr "Μέγ. μήκος πεδίου καλλιτέχνη"
+
+msgid "Max. title field length"
+msgstr "Μέγ. μήκος πεδίου τίτλου"
+
+msgid "Max. album field length"
+msgstr "Μέγ. μήκος πεδίου άλμπουμ"
+
+msgid "Marquee settings"
+msgstr "Ρυθμίσεις κυλιόμενου κειμένου"
+
+msgid "Max. marquee length"
+msgstr "Μέγ. μήκος κυλιόμενου"
+
+msgid "Marquee frame duration in milliseconds"
+msgstr "Διάρκεια καρέ κυλιόμενου σε ms"
+
+msgid "Marquee separator"
+msgstr "Διαχωριστικό κυλιόμενου"
+
+msgid "Hide widget when Spotify is inactive?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν το Spotify είναι ανενεργό;"
+
+msgid "Spotify is inactive"
+msgstr "Το Spotify είναι ανενεργό"
+
+msgid "Hide widget when playback is paused?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν η αναπαραγωγή είναι παύση;"
+
+msgid "Show metadata when paused?"
+msgstr "Εμφάνιση μεταδεδομένων όταν είναι σε παύση;"
+
+msgid "Paused"
+msgstr "Σε παύση"
+
+msgid "Hide widget when playback is stopped?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν η αναπαραγωγή είναι σταματημένη;"
+
+msgid "Stopped"
+msgstr "Σταματημένο"
+
+msgid "Loop and shuffle indicators"
+msgstr "Ενδείξεις επανάληψης και ανακατέματος"
+
+msgid "Shuffle"
+msgstr "Ανακάτεμα"
+
+msgid "Loop track"
+msgstr "Επανάληψη κομματιού"
+
+msgid "Loop playlist"
+msgstr "Επανάληψη λίστας αναπαραγωγής"
+
+msgid "Restore defaults"
+msgstr "Επαναφορά προεπιλογών"
