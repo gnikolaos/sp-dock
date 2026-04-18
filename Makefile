@@ -50,7 +50,6 @@ _build: all
 	cp $(PREFS_MODULES) _build
 	mkdir -p _build/schemas
 	cp schemas/*.xml _build/schemas
-	cp schemas/gschemas.compiled _build/schemas
 	mkdir -p _build/locale
 	for l in $(MSGSRC:.po=.mo) ; do \
 		af=_build/`dirname $$l .mo`; \
