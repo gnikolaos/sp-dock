@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 19:19+0300\n"
+"POT-Creation-Date: 2026-04-11 14:02+0200\n"
 "PO-Revision-Date: 2026-04-11 14:02+0200\n"
 "Last-Translator: gnikolaos <https://www.gnikolaos.gr>\n"
 "Language-Team: Greek\n"
@@ -15,150 +15,107 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: prefs.js:18
-msgid "Main settings"
-msgstr "Κύριες ρυθμίσεις"
+msgid "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, {album} for podcasts"
+msgstr "Έγκυρα κείμενα κράτησης θέσης: {track}, {artist}, {album} για τραγούδια; {track}, {album} για podcasts"
 
-#: prefs.js:23
+msgid "Use {pbctr} to show playback modes"
+msgstr "Χρησιμοποιήσε {pbctr} για να εμφανίσεις τη λειτουργία αναπαραγωγής"
+
 msgid "Display format for songs"
 msgstr "Μορφή εμφάνισης για τραγούδια"
 
-#: prefs.js:29
 msgid "Display format for podcasts"
 msgstr "Μορφή εμφάνισης για ηχοεκπομπές"
 
-#: prefs.js:35
 msgid "Display mode"
 msgstr "Λειτουργία εμφάνισης"
 
-#: prefs.js:38
 msgid "Static"
 msgstr "Στατικό"
 
-#: prefs.js:39
 msgid "Marquee"
 msgstr "Κυλιόμενο"
 
-#: prefs.js:44
 msgid "Position in panel"
 msgstr "Θέση στη καρτέλα"
 
-#: prefs.js:47
 msgid "Left"
 msgstr "Αριστερά"
 
-#: prefs.js:48
 msgid "Center"
 msgstr "Κέντρο"
 
-#: prefs.js:49
 msgid "Right"
 msgstr "Δεξιά"
 
-#: prefs.js:54
 msgid "Show Spotify logo"
-msgstr "Εμφάνιση λογότυπου Spotify"
+msgstr "Εμφάνιση Spotify λογότυπου"
 
-#: prefs.js:57
 msgid "Don't show"
 msgstr "Μην εμφανίζεις"
 
-#: prefs.js:58
 msgid "Left of label"
 msgstr "Αριστερά της ετικέτας"
 
-#: prefs.js:59
 msgid "Right of label"
 msgstr "Δεξιά της ετικέτας"
 
-#: prefs.js:64
 msgid "Static display settings"
 msgstr "Ρυθμίσεις στατικής εμφάνισης"
 
-#: prefs.js:69
-msgid "Max. title field length"
-msgstr "Μέγ. μήκος πεδίου τίτλου"
-
-#: prefs.js:80
 msgid "Max. artist field length"
 msgstr "Μέγ. μήκος πεδίου καλλιτέχνη"
 
-#: prefs.js:91
+msgid "Max. title field length"
+msgstr "Μέγ. μήκος πεδίου τίτλου"
+
 msgid "Max. album field length"
 msgstr "Μέγ. μήκος πεδίου άλμπουμ"
 
-#: prefs.js:102
-msgid "Marquee display settings"
-msgstr "Ρυθμίσεις κυλιόμενης εμφάνισης"
+msgid "Marquee settings"
+msgstr "Ρυθμίσεις κυλιόμενου κειμένου"
 
-#: prefs.js:107
 msgid "Max. marquee length"
 msgstr "Μέγ. μήκος κυλιόμενου"
 
-#: prefs.js:118
 msgid "Marquee frame duration in milliseconds"
 msgstr "Διάρκεια καρέ κυλιόμενου σε ms"
 
-#: prefs.js:129
 msgid "Marquee separator"
 msgstr "Διαχωριστικό κυλιόμενου"
 
-#: prefs.js:135
-msgid "Inactive Spotify settings"
-msgstr "Ρυθμίσεις ανενεργού Spotify"
+msgid "Hide widget when Spotify is inactive?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν το Spotify είναι ανενεργό;"
 
-#: prefs.js:140
-msgid "Hide widget when Spotify is inactive"
-msgstr "Απόκρυψη μικροεφαρμογής σε ανενεργό;"
+msgid "Spotify is inactive"
+msgstr "Το Spotify είναι ανενεργό"
 
-#: prefs.js:146
-msgid "Text to show when inactive"
-msgstr "Κείμενο για εμφάνιση σε ανενεργό"
+msgid "Hide widget when playback is paused?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν η αναπαραγωγή είναι παύση;"
 
-#: prefs.js:152
-msgid "Pause playback settings"
-msgstr "Ρυθμίσεις παύσης αναπαραγωγής"
+msgid "Show metadata when paused?"
+msgstr "Εμφάνιση μεταδεδομένων όταν είναι σε παύση;"
 
-#: prefs.js:157
-msgid "Hide widget when playback is paused"
-msgstr "Απόκρυψη μικροεφαρμογής σε παύση;"
+msgid "Paused"
+msgstr "Σε παύση"
 
-#: prefs.js:163
-msgid "Show metadata when paused"
-msgstr "Εμφάνιση μεταδεδομένων σε παύση;"
+msgid "Hide widget when playback is stopped?"
+msgstr "Απόκρυψη μικροεφαρμογής όταν η αναπαραγωγή είναι σταματημένη;"
 
-#: prefs.js:169
-msgid "Text to show when paused"
-msgstr "Κείμενο για εμφάνιση σε παύση"
+msgid "Stopped"
+msgstr "Σταματημένο"
 
-#: prefs.js:175
-msgid "Stopped playback settings"
-msgstr "Ρυθμίσεις διακοπής αναπαραγωγής"
-
-#: prefs.js:180
-msgid "Hide widget when playback is stopped"
-msgstr "Απόκρυψη μικροεφαρμογής σε διακοπή;"
-
-#: prefs.js:186
-msgid "Text to show when stopped"
-msgstr "Κείμενο για εμφάνιση σε διακοπή"
-
-#: prefs.js:192
 msgid "Loop and shuffle indicators"
 msgstr "Ενδείξεις επανάληψης και ανακατέματος"
 
-#: prefs.js:197
 msgid "Shuffle"
 msgstr "Ανακάτεμα"
 
-#: prefs.js:203
-msgid "Loop playlist"
-msgstr "Επανάληψη λίστας αναπαραγωγής"
-
-#: prefs.js:209
 msgid "Loop track"
 msgstr "Επανάληψη κομματιού"
 
-#: prefs.js:215
+msgid "Loop playlist"
+msgstr "Επανάληψη λίστας αναπαραγωγής"
+
 msgid "Restore defaults"
 msgstr "Επαναφορά προεπιλογών"

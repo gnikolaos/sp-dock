@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sp-dock 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 19:38+0300\n"
+"POT-Creation-Date: 2026-04-18 19:19+0300\n"
 "PO-Revision-Date: 2022-06-18 14:51+0200\n"
 "Last-Translator: Emre Senliyim <esenliyim@gmail.com>\n"
 "Language-Team: Dutch\n"
@@ -20,9 +20,8 @@ msgstr ""
 "X-Generator: Lokalize 22.04.2\n"
 
 #: prefs.js:18
-#, fuzzy
-msgid "Main settings"
-msgstr "Ticker-instellingen"
+msgid "Dock style"
+msgstr ""
 
 #: prefs.js:23
 msgid "Display format for songs"
@@ -176,3 +175,22 @@ msgstr "Nummer herhalen"
 #: prefs.js:215
 msgid "Restore defaults"
 msgstr "Standaardwaarden"
+
+#~ msgid ""
+#~ "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, "
+#~ "{album} for podcasts"
+#~ msgstr ""
+#~ "Geldige aanduidingen: {track}, {album}, {artist} voor nummers; {track}, "
+#~ "{album} voor podcasts"
+
+#~ msgid "Use {pbctr} to show playback modes"
+#~ msgstr "{pbctr} om afspeelmodi te weergeven"
+
+#~ msgid "Spotify is inactive"
+#~ msgstr "Spotify is inactief"
+
+#~ msgid "Paused"
+#~ msgstr "Onderbroken"
+
+#~ msgid "Stopped"
+#~ msgstr "Gestopt"

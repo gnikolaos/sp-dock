@@ -1,121 +1,120 @@
-# Turkish translations for sp-dock package.
-# Copyright (C) 2021 Emre Şenliyim
+# German translations for sp-dock package.
+# Copyright (C) 2021 Emre Senliyim
 # This file is distributed under the same license as the sp-dock package.
-# Emre Şenliyim <esenliyim@gmail.com>, 2021.
+# Emre Senliyim <esenliyim@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sp-dock\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 19:38+0300\n"
+"POT-Creation-Date: 2026-04-18 19:19+0300\n"
 "PO-Revision-Date: 2020-06-03 17:45+0200\n"
-"Last-Translator: Emre Şenliyim <esenliyim@gmail.com>\n"
-"Language-Team: Turkish\n"
-"Language: tr\n"
+"Last-Translator: Emre Senliyim <esenliyim@gmail.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: prefs.js:18
-#, fuzzy
-msgid "Main settings"
-msgstr "Kayan yazı ayarları"
+msgid "Dock style"
+msgstr ""
 
 #: prefs.js:23
 msgid "Display format for songs"
-msgstr "Şarkı gösterim formatı"
+msgstr "Anzeigeformat für Lieder"
 
 #: prefs.js:29
 msgid "Display format for podcasts"
-msgstr "Podcast gösterim formatı"
+msgstr "Anzeigeformat für Podcasts"
 
 #: prefs.js:35
 msgid "Display mode"
-msgstr "Yazı modu"
+msgstr "Anzeigemodus"
 
 #: prefs.js:38
 msgid "Static"
-msgstr "Sabit yazı"
+msgstr "Statisch"
 
 #: prefs.js:39
 msgid "Marquee"
-msgstr "Kayan yazı"
+msgstr "Laufschrift"
 
 #: prefs.js:44
 msgid "Position in panel"
-msgstr "Paneldeki yer"
+msgstr "Position am Panel"
 
 #: prefs.js:47
 msgid "Left"
-msgstr "Sol"
+msgstr "Links"
 
 #: prefs.js:48
 msgid "Center"
-msgstr "Orta"
+msgstr "Mitte"
 
 #: prefs.js:49
 msgid "Right"
-msgstr "Sağ"
+msgstr "Rechts"
 
 #: prefs.js:54
 msgid "Show Spotify logo"
-msgstr "Spotify logosu"
+msgstr "Spotify-Logo anzeigen"
 
 #: prefs.js:57
 msgid "Don't show"
-msgstr "Gösterme"
+msgstr "Nicht anzeigen"
 
 #: prefs.js:58
 msgid "Left of label"
-msgstr "Sol tarafta"
+msgstr "Linke Seite vom Schild"
 
 #: prefs.js:59
 msgid "Right of label"
-msgstr "Sağ tarafta"
+msgstr "Rechte Seite vom Schild"
 
 #: prefs.js:64
 msgid "Static display settings"
-msgstr "Sabit yazı ayarları"
+msgstr "Einstellungen für statische Anzeige"
 
 #: prefs.js:69
 msgid "Max. title field length"
-msgstr "İsim alanı maks. uzunluğu"
+msgstr "Max. Länge des Titel-Feldes"
 
 #: prefs.js:80
 msgid "Max. artist field length"
-msgstr "Sanatçı alanı maks. uzunluğu"
+msgstr "Max. Länge des Künstler-Feldes"
 
 #: prefs.js:91
 msgid "Max. album field length"
-msgstr "Albüm alanı maks. uzunluğu"
+msgstr "Max. Länge des Album-Feldes"
 
 #: prefs.js:102
 #, fuzzy
 msgid "Marquee display settings"
-msgstr "Kayan yazı ayarları"
+msgstr "Laufschrifteinstellungen"
 
 #: prefs.js:107
 msgid "Max. marquee length"
-msgstr "Maks. kayan yazı uzunluğu"
+msgstr "Max. Länge der Laufschrift"
 
 #: prefs.js:118
 msgid "Marquee frame duration in milliseconds"
-msgstr "Milisaniye cinsinden kayan yazı güncelleme sıklığı"
+msgstr "Animationsintervall in millisekunden"
 
 #: prefs.js:129
 msgid "Marquee separator"
-msgstr "Kayan yazı ayracı"
+msgstr "Separator"
 
 #: prefs.js:135
 #, fuzzy
 msgid "Inactive Spotify settings"
-msgstr "Sabit yazı ayarları"
+msgstr "Einstellungen für statische Anzeige"
 
 #: prefs.js:140
 #, fuzzy
 msgid "Hide widget when Spotify is inactive"
-msgstr "Spotify kapalıyken widget'ı gizle?"
+msgstr "Widget ausblenden wenn Spotify inaktiv?"
 
 #: prefs.js:146
 msgid "Text to show when inactive"
@@ -124,32 +123,32 @@ msgstr ""
 #: prefs.js:152
 #, fuzzy
 msgid "Pause playback settings"
-msgstr "Sabit yazı ayarları"
+msgstr "Einstellungen für statische Anzeige"
 
 #: prefs.js:157
 #, fuzzy
 msgid "Hide widget when playback is paused"
-msgstr "Müzik duraklatıldığında widget'ı gizle?"
+msgstr "Widget ausblenden wenn Wiedergabe pausiert?"
 
 #: prefs.js:163
 #, fuzzy
 msgid "Show metadata when paused"
-msgstr "Duraklatıldığında parça bilgisi göstermeye devam et?"
+msgstr "Metadata anzeigen wenn Wiedergabe pausiert?"
 
 #: prefs.js:169
 #, fuzzy
 msgid "Text to show when paused"
-msgstr "Duraklatıldığında parça bilgisi göstermeye devam et?"
+msgstr "Metadata anzeigen wenn Wiedergabe pausiert?"
 
 #: prefs.js:175
 #, fuzzy
 msgid "Stopped playback settings"
-msgstr "Sabit yazı ayarları"
+msgstr "Einstellungen für statische Anzeige"
 
 #: prefs.js:180
 #, fuzzy
 msgid "Hide widget when playback is stopped"
-msgstr "Müzik durdurulduğunda widget'ı gizle?"
+msgstr "Widget ausblenden wenn Wiedergabe gestoppt?"
 
 #: prefs.js:186
 msgid "Text to show when stopped"
@@ -157,20 +156,39 @@ msgstr ""
 
 #: prefs.js:192
 msgid "Loop and shuffle indicators"
-msgstr "Tekrar ve karışık oynatma işaretleri"
+msgstr "Zufällige Wiedergabe- und Wiederholungsanzeigen"
 
 #: prefs.js:197
 msgid "Shuffle"
-msgstr "Karışık oynatma"
+msgstr "Shuffle-Modus"
 
 #: prefs.js:203
 msgid "Loop playlist"
-msgstr "Playlist tekrarlama"
+msgstr "Playlist-Wiederholungsmodus"
 
 #: prefs.js:209
 msgid "Loop track"
-msgstr "Tek şarkı tekrarlama"
+msgstr "Song-Wiederholungsmodus"
 
 #: prefs.js:215
 msgid "Restore defaults"
-msgstr "Her şeyi sıfırla"
+msgstr "Alle zurücksetzen"
+
+#~ msgid ""
+#~ "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, "
+#~ "{album} for podcasts"
+#~ msgstr ""
+#~ "Gültige Platzhalter: {track}, {artist}, {album} für Lieder; {track}, "
+#~ "{album} für Podcasts"
+
+#~ msgid "Use {pbctr} to show playback modes"
+#~ msgstr "{pbctr} um Wiedergabemodi anzuzeigen."
+
+#~ msgid "Spotify is inactive"
+#~ msgstr "Spotify ist inaktiv"
+
+#~ msgid "Paused"
+#~ msgstr "Pausiert"
+
+#~ msgid "Stopped"
+#~ msgstr "Gestoppt"

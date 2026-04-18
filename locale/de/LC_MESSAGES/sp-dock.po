@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-03 17:42+0200\n"
+"POT-Creation-Date: 2026-04-18 19:38+0300\n"
 "PO-Revision-Date: 2020-06-03 17:45+0200\n"
 "Last-Translator: Emre Senliyim <esenliyim@gmail.com>\n"
 "Language-Team: German\n"
@@ -17,107 +17,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, {album} for podcasts"
-msgstr "Gültige Platzhalter: {track}, {artist}, {album} für Lieder; {track}, {album} für Podcasts"
+#: prefs.js:18
+#, fuzzy
+msgid "Main settings"
+msgstr "Laufschrifteinstellungen"
 
-msgid "Use {pbctr} to show playback modes"
-msgstr "{pbctr} um Wiedergabemodi anzuzeigen."
-
+#: prefs.js:23
 msgid "Display format for songs"
 msgstr "Anzeigeformat für Lieder"
 
+#: prefs.js:29
 msgid "Display format for podcasts"
 msgstr "Anzeigeformat für Podcasts"
 
+#: prefs.js:35
 msgid "Display mode"
 msgstr "Anzeigemodus"
 
+#: prefs.js:38
 msgid "Static"
 msgstr "Statisch"
 
+#: prefs.js:39
 msgid "Marquee"
 msgstr "Laufschrift"
 
+#: prefs.js:44
 msgid "Position in panel"
 msgstr "Position am Panel"
 
+#: prefs.js:47
 msgid "Left"
 msgstr "Links"
 
+#: prefs.js:48
 msgid "Center"
 msgstr "Mitte"
 
+#: prefs.js:49
 msgid "Right"
 msgstr "Rechts"
 
+#: prefs.js:54
 msgid "Show Spotify logo"
 msgstr "Spotify-Logo anzeigen"
 
+#: prefs.js:57
 msgid "Don't show"
 msgstr "Nicht anzeigen"
 
+#: prefs.js:58
 msgid "Left of label"
 msgstr "Linke Seite vom Schild"
 
+#: prefs.js:59
 msgid "Right of label"
 msgstr "Rechte Seite vom Schild"
 
+#: prefs.js:64
 msgid "Static display settings"
 msgstr "Einstellungen für statische Anzeige"
 
-msgid "Max. artist field length"
-msgstr "Max. Länge des Künstler-Feldes"
-
+#: prefs.js:69
 msgid "Max. title field length"
 msgstr "Max. Länge des Titel-Feldes"
 
+#: prefs.js:80
+msgid "Max. artist field length"
+msgstr "Max. Länge des Künstler-Feldes"
+
+#: prefs.js:91
 msgid "Max. album field length"
 msgstr "Max. Länge des Album-Feldes"
 
-msgid "Marquee settings"
+#: prefs.js:102
+#, fuzzy
+msgid "Marquee display settings"
 msgstr "Laufschrifteinstellungen"
 
+#: prefs.js:107
 msgid "Max. marquee length"
 msgstr "Max. Länge der Laufschrift"
 
+#: prefs.js:118
 msgid "Marquee frame duration in milliseconds"
 msgstr "Animationsintervall in millisekunden"
 
+#: prefs.js:129
 msgid "Marquee separator"
 msgstr "Separator"
 
-msgid "Hide widget when Spotify is inactive?"
+#: prefs.js:135
+#, fuzzy
+msgid "Inactive Spotify settings"
+msgstr "Einstellungen für statische Anzeige"
+
+#: prefs.js:140
+#, fuzzy
+msgid "Hide widget when Spotify is inactive"
 msgstr "Widget ausblenden wenn Spotify inaktiv?"
 
-msgid "Spotify is inactive"
-msgstr "Spotify ist inaktiv"
+#: prefs.js:146
+msgid "Text to show when inactive"
+msgstr ""
 
-msgid "Hide widget when playback is paused?"
+#: prefs.js:152
+#, fuzzy
+msgid "Pause playback settings"
+msgstr "Einstellungen für statische Anzeige"
+
+#: prefs.js:157
+#, fuzzy
+msgid "Hide widget when playback is paused"
 msgstr "Widget ausblenden wenn Wiedergabe pausiert?"
 
-msgid "Show metadata when paused?"
+#: prefs.js:163
+#, fuzzy
+msgid "Show metadata when paused"
 msgstr "Metadata anzeigen wenn Wiedergabe pausiert?"
 
-msgid "Paused"
-msgstr "Pausiert"
+#: prefs.js:169
+#, fuzzy
+msgid "Text to show when paused"
+msgstr "Metadata anzeigen wenn Wiedergabe pausiert?"
 
-msgid "Hide widget when playback is stopped?"
+#: prefs.js:175
+#, fuzzy
+msgid "Stopped playback settings"
+msgstr "Einstellungen für statische Anzeige"
+
+#: prefs.js:180
+#, fuzzy
+msgid "Hide widget when playback is stopped"
 msgstr "Widget ausblenden wenn Wiedergabe gestoppt?"
 
-msgid "Stopped"
-msgstr "Gestoppt"
+#: prefs.js:186
+msgid "Text to show when stopped"
+msgstr ""
 
+#: prefs.js:192
 msgid "Loop and shuffle indicators"
 msgstr "Zufällige Wiedergabe- und Wiederholungsanzeigen"
 
+#: prefs.js:197
 msgid "Shuffle"
 msgstr "Shuffle-Modus"
 
-msgid "Loop track"
-msgstr "Song-Wiederholungsmodus"
-
+#: prefs.js:203
 msgid "Loop playlist"
 msgstr "Playlist-Wiederholungsmodus"
 
+#: prefs.js:209
+msgid "Loop track"
+msgstr "Song-Wiederholungsmodus"
+
+#: prefs.js:215
 msgid "Restore defaults"
 msgstr "Alle zurücksetzen"

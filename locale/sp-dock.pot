@@ -1,122 +1,166 @@
-# Locale template file for sp-dock
-# Copyright (C) 2021 Emre Senliyim
-# This file is distributed under the same license as the sp-dock package.
-# Emre Senliyim <esenliyim@gmail.com>, 2021.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: sp-dock 1.0 \n"
-"Report-Msgid-Bugs-To: esenliyim@gmail.com \n"
-"POT-Creation-Date: 2020-06-03 17:42+0200\n"
-"PO-Revision-Date: 2021-08-29 \n"
-"Last-Translator: Emre Senliyim <esenliyim@gmail.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 19:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, {album} for podcasts"
+#: prefs.js:18
+msgid "Main settings"
 msgstr ""
 
-msgid "Use {pbctr} to show playback modes"
-msgstr ""
-
+#: prefs.js:23
 msgid "Display format for songs"
 msgstr ""
 
+#: prefs.js:29
 msgid "Display format for podcasts"
 msgstr ""
 
+#: prefs.js:35
 msgid "Display mode"
 msgstr ""
 
+#: prefs.js:38
 msgid "Static"
 msgstr ""
 
+#: prefs.js:39
 msgid "Marquee"
 msgstr ""
 
+#: prefs.js:44
 msgid "Position in panel"
 msgstr ""
 
+#: prefs.js:47
 msgid "Left"
 msgstr ""
 
+#: prefs.js:48
 msgid "Center"
 msgstr ""
 
+#: prefs.js:49
 msgid "Right"
 msgstr ""
 
+#: prefs.js:54
 msgid "Show Spotify logo"
 msgstr ""
 
+#: prefs.js:57
 msgid "Don't show"
 msgstr ""
 
+#: prefs.js:58
 msgid "Left of label"
 msgstr ""
 
+#: prefs.js:59
 msgid "Right of label"
 msgstr ""
 
+#: prefs.js:64
 msgid "Static display settings"
 msgstr ""
 
+#: prefs.js:69
 msgid "Max. title field length"
 msgstr ""
 
+#: prefs.js:80
 msgid "Max. artist field length"
 msgstr ""
 
+#: prefs.js:91
 msgid "Max. album field length"
 msgstr ""
 
-msgid "Marquee settings"
+#: prefs.js:102
+msgid "Marquee display settings"
 msgstr ""
 
+#: prefs.js:107
 msgid "Max. marquee length"
 msgstr ""
 
+#: prefs.js:118
 msgid "Marquee frame duration in milliseconds"
 msgstr ""
 
+#: prefs.js:129
 msgid "Marquee separator"
 msgstr ""
 
-msgid "Hide widget when Spotify is inactive?"
+#: prefs.js:135
+msgid "Inactive Spotify settings"
 msgstr ""
 
-msgid "Spotify is inactive"
+#: prefs.js:140
+msgid "Hide widget when Spotify is inactive"
 msgstr ""
 
-msgid "Hide widget when playback is paused?"
+#: prefs.js:146
+msgid "Text to show when inactive"
 msgstr ""
 
-msgid "Show metadata when paused?"
+#: prefs.js:152
+msgid "Pause playback settings"
 msgstr ""
 
-msgid "Paused"
+#: prefs.js:157
+msgid "Hide widget when playback is paused"
 msgstr ""
 
-msgid "Hide widget when playback is stopped?"
+#: prefs.js:163
+msgid "Show metadata when paused"
 msgstr ""
 
-msgid "Stopped"
+#: prefs.js:169
+msgid "Text to show when paused"
 msgstr ""
 
+#: prefs.js:175
+msgid "Stopped playback settings"
+msgstr ""
+
+#: prefs.js:180
+msgid "Hide widget when playback is stopped"
+msgstr ""
+
+#: prefs.js:186
+msgid "Text to show when stopped"
+msgstr ""
+
+#: prefs.js:192
 msgid "Loop and shuffle indicators"
 msgstr ""
 
+#: prefs.js:197
 msgid "Shuffle"
 msgstr ""
 
-msgid "Loop track"
-msgstr ""
-
+#: prefs.js:203
 msgid "Loop playlist"
 msgstr ""
 
+#: prefs.js:209
+msgid "Loop track"
+msgstr ""
+
+#: prefs.js:215
 msgid "Restore defaults"
 msgstr ""

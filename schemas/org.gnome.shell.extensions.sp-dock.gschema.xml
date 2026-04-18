@@ -26,13 +26,13 @@ along with this program.If not, see < http://www.gnu.org/licenses/>. -->
         </key>
 
         <key type="s" name="paused">
-            <default>"⏸️"</default>
+            <default>"⏸️ "</default>
             <summary>paused icon</summary>
             <description>the display text to indicate playback is paused</description>
         </key>
 
         <key type="s" name="stopped">
-            <default>"⏹️"</default>
+            <default>"⏹️ "</default>
             <summary>stopped icon</summary>
             <description>the display text to indicate playback is stopped</description>
         </key>

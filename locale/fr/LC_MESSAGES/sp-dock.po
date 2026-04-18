@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sp-dock 1.0 \n"
-"Report-Msgid-Bugs-To: esenliyim@gmail.com \n"
-"POT-Creation-Date: 2020-06-03 17:42+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 19:38+0300\n"
 "PO-Revision-Date: 2020-06-03 17:45+0200\n"
 "Last-Translator: Emre Senliyim <esenliyim@gmail.com>\n"
 "Language-Team: french\n"
@@ -17,107 +17,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Valid placeholders: {track}, {album}, and {artist} for songs; {track}, {album} for podcasts"
-msgstr "Champs valides: {track}, {album}, {artist} pour les musiques; {track}, {album} pour les podcasts"
+#: prefs.js:18
+#, fuzzy
+msgid "Main settings"
+msgstr "Paramètres de texte défilant"
 
-msgid "Use {pbctr} to show playback modes"
-msgstr "{pbctr} pour afficher les modes de lecture"
-
+#: prefs.js:23
 msgid "Display format for songs"
 msgstr "Format d'affichage des chansons"
 
-msgid "Hide widget when Spotify is inactive?"
-msgstr "Masquer le widget quand Spotify est inactif ?"
-
-msgid "Spotify is inactive"
-msgstr "Spotify est inactif"
-
-msgid "Hide widget when playback is paused?"
-msgstr "Masquer le widget quand Spotify est en pause ?"
-
-msgid "Paused"
-msgstr "En pause"
-
-msgid "Hide widget when playback is stopped?"
-msgstr "Masquer le widget quand Spotify est arrêtée ?"
-
-msgid "Stopped"
-msgstr "Arrêtée"
-
-msgid "Restore defaults"
-msgstr "Restaurer les paramètres par défaut"
-
-msgid "Position in panel"
-msgstr "Position sur le panneau"
-
-msgid "Left"
-msgstr "Gauche"
-
-msgid "Center"
-msgstr "Milieu"
-
-msgid "Right"
-msgstr "Droite"
-
-msgid "Max. artist field length"
-msgstr "Longueur maximale du champ artiste"
-
-msgid "Max. title field length"
-msgstr "Longueur maximale du champ titre"
-
-msgid "Max. album field length"
-msgstr "Longueur maximale du champ album"
-
+#: prefs.js:29
 msgid "Display format for podcasts"
 msgstr "Format d'affichage des podcasts"
 
-msgid "Show Spotify logo"
-msgstr "Affichage du logo Spotify"
-
-msgid "Don't show"
-msgstr "Ne pas afficher"
-
-msgid "Left of label"
-msgstr "À gauche"
-
-msgid "Right of label"
-msgstr "À droite"
-
+#: prefs.js:35
 msgid "Display mode"
 msgstr "Mode d'affichage"
 
+#: prefs.js:38
 msgid "Static"
 msgstr "Affichage statique"
 
+#: prefs.js:39
 msgid "Marquee"
 msgstr "Texte défilant"
 
+#: prefs.js:44
+msgid "Position in panel"
+msgstr "Position sur le panneau"
+
+#: prefs.js:47
+msgid "Left"
+msgstr "Gauche"
+
+#: prefs.js:48
+msgid "Center"
+msgstr "Milieu"
+
+#: prefs.js:49
+msgid "Right"
+msgstr "Droite"
+
+#: prefs.js:54
+msgid "Show Spotify logo"
+msgstr "Affichage du logo Spotify"
+
+#: prefs.js:57
+msgid "Don't show"
+msgstr "Ne pas afficher"
+
+#: prefs.js:58
+msgid "Left of label"
+msgstr "À gauche"
+
+#: prefs.js:59
+msgid "Right of label"
+msgstr "À droite"
+
+#: prefs.js:64
 msgid "Static display settings"
 msgstr "Paramètres d'affichage statique"
 
-msgid "Marquee settings"
+#: prefs.js:69
+msgid "Max. title field length"
+msgstr "Longueur maximale du champ titre"
+
+#: prefs.js:80
+msgid "Max. artist field length"
+msgstr "Longueur maximale du champ artiste"
+
+#: prefs.js:91
+msgid "Max. album field length"
+msgstr "Longueur maximale du champ album"
+
+#: prefs.js:102
+#, fuzzy
+msgid "Marquee display settings"
 msgstr "Paramètres de texte défilant"
 
+#: prefs.js:107
 msgid "Max. marquee length"
 msgstr "Longueur maximale du texte"
 
+#: prefs.js:118
 msgid "Marquee frame duration in milliseconds"
 msgstr "Intervalle d'animation en millisecondes"
 
+#: prefs.js:129
 msgid "Marquee separator"
 msgstr "Séparateur"
 
-msgid "Show metadata when paused?"
+#: prefs.js:135
+#, fuzzy
+msgid "Inactive Spotify settings"
+msgstr "Paramètres d'affichage statique"
+
+#: prefs.js:140
+#, fuzzy
+msgid "Hide widget when Spotify is inactive"
+msgstr "Masquer le widget quand Spotify est inactif ?"
+
+#: prefs.js:146
+msgid "Text to show when inactive"
+msgstr ""
+
+#: prefs.js:152
+#, fuzzy
+msgid "Pause playback settings"
+msgstr "Paramètres d'affichage statique"
+
+#: prefs.js:157
+#, fuzzy
+msgid "Hide widget when playback is paused"
+msgstr "Masquer le widget quand Spotify est en pause ?"
+
+#: prefs.js:163
+#, fuzzy
+msgid "Show metadata when paused"
 msgstr "Afficher les métadonnées quand Spotify est en pause ?"
 
+#: prefs.js:169
+#, fuzzy
+msgid "Text to show when paused"
+msgstr "Afficher les métadonnées quand Spotify est en pause ?"
+
+#: prefs.js:175
+#, fuzzy
+msgid "Stopped playback settings"
+msgstr "Paramètres d'affichage statique"
+
+#: prefs.js:180
+#, fuzzy
+msgid "Hide widget when playback is stopped"
+msgstr "Masquer le widget quand Spotify est arrêtée ?"
+
+#: prefs.js:186
+msgid "Text to show when stopped"
+msgstr ""
+
+#: prefs.js:192
 msgid "Loop and shuffle indicators"
 msgstr "Indicateurs de boucle et de lecture aléatoire"
 
+#: prefs.js:197
 msgid "Shuffle"
 msgstr "Lecture aléatoire"
 
+#: prefs.js:203
+msgid "Loop playlist"
+msgstr "Playlist en boucle"
+
+#: prefs.js:209
 msgid "Loop track"
 msgstr "Chanson en boucle"
 
-msgid "Loop playlist"
-msgstr "Playlist en boucle"
+#: prefs.js:215
+msgid "Restore defaults"
+msgstr "Restaurer les paramètres par défaut"
