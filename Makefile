@@ -1,6 +1,6 @@
 
-PKG_NAME = sp-tray
-UUID = sp-tray@sp-tray.esenliyim.github.com
+PKG_NAME = sp-dock
+UUID = sp-dock@gnikolaos.gr
 BASE_MODULES = metadata.json LICENSE.txt
 SRC_MODULES = constants.js dbus.js extension.js panelButton.js
 PREFS_MODULES = prefs.js settingsFields.js prefs.xml
@@ -17,7 +17,7 @@ all: extension
 
 extension: ./schemas/gschemas.compiled $(MSGSRC:.po=.mo)
 
-./schemas/gschemas.compiled: ./schemas/org.gnome.shell.extensions.sp-tray.gschema.xml
+./schemas/gschemas.compiled: ./schemas/org.gnome.shell.extensions.sp-dock.gschema.xml
 	glib-compile-schemas ./schemas/
 
 ./po/%.mo: ./po/%.po

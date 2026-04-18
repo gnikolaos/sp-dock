@@ -18,10 +18,10 @@
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
-import SpTrayButton from "./panelButton.js";
+import SpDockButton from "./panelButton.js";
 import constants from "./constants.js";
 
-export default class SpTrayExtension extends Extension {
+export default class SpDockExtension extends Extension {
     constructor(metadata) {
         super(metadata);
         this.extensionButton = null;
@@ -29,14 +29,14 @@ export default class SpTrayExtension extends Extension {
 
     enable() {
         this.settings = this.getSettings();
-        this.extensionButton = new SpTrayButton();
-        this._addToTray();
+        this.extensionButton = new SpDockButton();
+        this._addToDock();
     }
 
-    _addToTray() {
+    _addToDock() {
         let pos = this.settings.get_int("position");
         Main.panel.addToStatusArea(
-            "SpTray",
+            "SpDock",
             this.extensionButton,
             pos === constants.boxPosition.RIGHT ? 0 : -1,
             this._getPosition(pos),
@@ -56,5 +56,5 @@ export default class SpTrayExtension extends Extension {
 }
 
 // function init() {
-//     return new SpTrayExtension();
+//     return new SpDockExtension();
 // }

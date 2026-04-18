@@ -24,11 +24,11 @@ import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 
-import SpTrayDbus from "./dbus.js";
+import SpDockDbus from "./dbus.js";
 import settingsFields from "./settingsFields.js";
 import constants from "./constants.js";
 
-const marqueeTextGenerator = function* (label) {
+const marqueeTextGenerator = function*(label) {
     const length = this.settings.get_int("marquee-length");
     const separator = this.settings.get_string("marquee-tail");
 
@@ -40,11 +40,11 @@ const marqueeTextGenerator = function* (label) {
     }
 };
 
-const SpTrayButton = GObject.registerClass(
-    { GTypeName: "SpTrayButton" },
-    class SpTrayButton extends PanelMenu.Button {
+const SpDockButton = GObject.registerClass(
+    { GTypeName: "SpDockButton" },
+    class SpDockButton extends PanelMenu.Button {
         _init() {
-            this.extensionObject = Extension.lookupByUUID("sp-tray@sp-tray.esenliyim.github.com");
+            this.extensionObject = Extension.lookupByUUID("sp-dock@gnikolaos.gr");
             super._init(null, this.extensionObject.metadata.name);
 
             this.ui = new Map();
@@ -163,7 +163,7 @@ const SpTrayButton = GObject.registerClass(
         }
 
         _initDbus() {
-            this.dbus = new SpTrayDbus(this);
+            this.dbus = new SpDockDbus(this);
         }
 
         // if the spotify logo is to be shown, insert it where appropriate (sounded better in my head)
@@ -454,4 +454,4 @@ const SpTrayButton = GObject.registerClass(
     },
 );
 
-export default SpTrayButton;
+export default SpDockButton;

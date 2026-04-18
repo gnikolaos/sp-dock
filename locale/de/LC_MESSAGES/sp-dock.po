@@ -1,6 +1,6 @@
-# German translations for sp-tray package.
+# German translations for sp-dock package.
 # Copyright (C) 2021 Emre Senliyim
-# This file is distributed under the same license as the sp-tray package.
+# This file is distributed under the same license as the sp-dock package.
 # Emre Senliyim <esenliyim@gmail.com>, 2021.
 #
 msgid ""

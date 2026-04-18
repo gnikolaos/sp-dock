@@ -1,11 +1,11 @@
-# Turkish translations for sp-tray package.
+# Turkish translations for sp-dock package.
 # Copyright (C) 2021 Emre Şenliyim
-# This file is distributed under the same license as the sp-tray package.
+# This file is distributed under the same license as the sp-dock package.
 # Emre Şenliyim <esenliyim@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sp-tray\n"
+"Project-Id-Version: sp-dock\n"
 "Report-Msgid-Bugs-To: esenliyim@gmail.com\n"
 "POT-Creation-Date: 2020-06-03 17:42+0200\n"
 "PO-Revision-Date: 2020-06-03 17:45+0200\n"

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<interface domain="sp-tray">
+<interface domain="sp-dock">
 
     <object class="GtkAdjustment" id="title-button-adj">
         <property name="lower">5</property>
@@ -165,7 +165,7 @@
                         </child>
                     </object>
                 </child>
-                
+
                 <child>
                     <object class="GtkBox">
                         <property name="spacing">12</property>

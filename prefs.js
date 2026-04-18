@@ -64,7 +64,7 @@ const SpBuilderScope = GObject.registerClass(
     },
 );
 
-export default class SpTrayPrefs extends ExtensionPreferences {
+export default class SpDockPrefs extends ExtensionPreferences {
     constructor(metadata) {
         super(metadata);
     }

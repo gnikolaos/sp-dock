@@ -1,12 +1,12 @@
-# Locale template file for sp-tray
+# Locale template file for sp-dock
 # Copyright (C) 2021 Emre Senliyim
-# This file is distributed under the same license as the sp-tray package.
+# This file is distributed under the same license as the sp-dock package.
 #
 # Emre Senliyim <esenliyim@gmail.com>, 2021.
 # Heimen Stoffels <vistausss@fastmail.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: sp-tray 1.0\n"
+"Project-Id-Version: sp-dock 1.0\n"
 "Report-Msgid-Bugs-To: esenliyim@gmail.com\n"
 "POT-Creation-Date: 2020-06-03 17:42+0200\n"
 "PO-Revision-Date: 2022-06-18 14:51+0200\n"

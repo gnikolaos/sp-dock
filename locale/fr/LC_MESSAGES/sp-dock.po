@@ -1,11 +1,11 @@
-# French translations for sp-tray package.
+# French translations for sp-dock package.
 # Copyright (C) 2021 Emre Senliyim
-# This file is distributed under the same license as the sp-tray package.
+# This file is distributed under the same license as the sp-dock package.
 # Emre Senliyim <esenliyim@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sp-tray 1.0 \n"
+"Project-Id-Version: sp-dock 1.0 \n"
 "Report-Msgid-Bugs-To: esenliyim@gmail.com \n"
 "POT-Creation-Date: 2020-06-03 17:42+0200\n"
 "PO-Revision-Date: 2020-06-03 17:45+0200\n"

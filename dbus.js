@@ -53,7 +53,7 @@ const supportedClients = [
     },
 ];
 
-const SpTrayDbus = class SpTrayDbus {
+const SpDockDbus = class SpDockDbus {
     constructor(panelButton) {
         this.proxy = null;
         this.panelButton = panelButton;
@@ -317,4 +317,4 @@ const SpTrayDbus = class SpTrayDbus {
     }
 };
 
-export default SpTrayDbus;
+export default SpDockDbus;
