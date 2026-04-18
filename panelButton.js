@@ -22,6 +22,8 @@ import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 
+Gio._promisify(Gio.File.prototype, "load_contents_async");
+
 import SpDockDbus from "./dbus.js";
 import settingsFields from "./settingsFields.js";
 import constants from "./constants.js";
@@ -55,6 +57,8 @@ const SpDockButton = GObject.registerClass(
             this._initUi();
 
             this.updateLabel(true);
+
+            this._loadSnapIcon()
         }
 
         _initSettings() {
@@ -128,35 +132,33 @@ const SpDockButton = GObject.registerClass(
          * as fallback
          */
         makeIcon() {
-            const snapFileContents = this.readSnapFile();
-            if (snapFileContents) {
-                // There's a snap build of Spotify installed
-                const gicon = Gio.icon_new_for_string(snapFileContents);
-                return new St.Icon({
-                    gicon,
-                    style_class: "system-status-icon",
-                    y_align: Clutter.ActorAlign.CENTER,
-                });
-            }
             return new St.Icon({
                 icon_name: "spotify",
                 style_class: "system-status-icon",
-                fallback_icon_name: "com.spotify.Client", // icon name for flatpak, in case it's not a native build
+                fallback_icon_name: "com.spotify.Client",
             });
         }
 
-        readSnapFile() {
+        async _loadSnapIcon() {
             try {
-                const [ok, contents] = GLib.file_get_contents(
+                const file = Gio.File.new_for_path(
                     "/var/lib/snapd/desktop/applications/spotify_spotify.desktop",
                 );
-                if (!ok) {
-                    return false;
+                const [contents] = await file.load_contents_async(null);
+                const decoder = new TextDecoder("utf-8");
+                const contentsString = decoder.decode(contents);
+                const matched = contentsString.match(/Icon=(.*)\n/m);
+                if (matched) {
+                    const gicon = Gio.icon_new_for_string(matched[1]);
+                    const icon = new St.Icon({
+                        gicon,
+                        style_class: "system-status-icon",
+                        y_align: Clutter.ActorAlign.CENTER,
+                    });
+                    this.ui.get("icon").set_gicon(gicon);
                 }
-                const matched = String.fromCharCode(...contents).match(/Icon=(.*)\n/m);
-                return matched ? matched[1] : false;
             } catch (error) {
-                return false;
+                // Not a snap install or file not found, ignore
             }
         }
 
