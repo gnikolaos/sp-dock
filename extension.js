@@ -29,7 +29,7 @@ export default class SpDockExtension extends Extension {
 
     enable() {
         this.settings = this.getSettings();
-        this.extensionButton = new SpDockButton();
+        this.extensionButton = new SpDockButton(this);
         this._addToDock();
     }
 

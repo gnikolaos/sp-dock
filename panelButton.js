@@ -16,8 +16,6 @@
 import * as PanelMenu from "resource:///org/gnome/shell/ui/panelMenu.js";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-
 import St from "gi://St";
 import Clutter from "gi://Clutter";
 import GObject from "gi://GObject";
@@ -43,8 +41,8 @@ const marqueeTextGenerator = function*(label) {
 const SpDockButton = GObject.registerClass(
     { GTypeName: "SpDockButton" },
     class SpDockButton extends PanelMenu.Button {
-        _init() {
-            this.extensionObject = Extension.lookupByUUID("sp-dock@gnikolaos.gr");
+        constructor(extensionObject) {
+            this.extensionObject = extensionObject;
             super._init(null, this.extensionObject.metadata.name);
 
             this.ui = new Map();
