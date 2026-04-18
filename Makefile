@@ -9,7 +9,6 @@ build: clean
 		--extra-source=metadata.json \
 		--extra-source=extension.js \
 		--extra-source=prefs.js \
-		--extra-source=prefs.xml \
 		--extra-source=panelButton.js \
 		--extra-source=dbus.js \
 		--extra-source=settingsFields.js \
