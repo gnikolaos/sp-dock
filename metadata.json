@@ -1,6 +1,6 @@
 {
     "description": "Adds a button to the panel that shows information Spotify playback. For bug reports, feature requests, translation contributions, etc., please visit the extension's github page.",
-    "name": "spotify-tray",
+    "name": "sp-dock",
     "shell-version": [
         "45",
         "46",

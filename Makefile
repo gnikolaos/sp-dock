@@ -1,64 +1,29 @@
+NAME = sp-dock
+UUID = $(NAME)@gnikolaos.gr
 
-PKG_NAME = sp-dock
-UUID = sp-dock@gnikolaos.gr
-BASE_MODULES = metadata.json LICENSE.txt
-SRC_MODULES = constants.js dbus.js extension.js panelButton.js
-PREFS_MODULES = prefs.js settingsFields.js prefs.xml
-INSTALLBASE = $(HOME)/.local/share/gnome-shell/extensions
-DEST = $(INSTALLBASE)/$(UUID)
-MSGSRC = $(wildcard locale/*/*/*.po)
-ifdef VERSION
-	ZIPVER = -v$(VERSION)
-else
-	ZIPVER = -v$(shell cat metadata.json | sed '/"version"/!d' | sed s/\"version\"://g | sed s/\ //g | sed s/,//g)
-endif
+.PHONY: build install uninstall clean
 
-all: extension
+build: clean
+	mkdir -p build
+	gnome-extensions pack -f \
+		--extra-source=metadata.json \
+		--extra-source=extension.js \
+		--extra-source=prefs.js \
+		--extra-source=prefs.xml \
+		--extra-source=panelButton.js \
+		--extra-source=dbus.js \
+		--extra-source=settingsFields.js \
+		--extra-source=constants.js \
+		--schema=schemas/org.gnome.shell.extensions.sp-dock.gschema.xml \
+		--podir=locale \
+		--gettext-domain=sp-dock \
+		-o build/
 
-extension: ./schemas/gschemas.compiled $(MSGSRC:.po=.mo)
-
-./schemas/gschemas.compiled: ./schemas/org.gnome.shell.extensions.sp-dock.gschema.xml
-	glib-compile-schemas ./schemas/
-
-./po/%.mo: ./po/%.po
-	msgfmt -c $< -o $@
-
-clean:
-	rm -f ./schemas/gschemas.compiled
-	rm -f ./po/*.mo
-
-install: _build
-	rm -rf $(DEST)
-	mkdir -p $(DEST)
-	cp -r ./_build/* $(DEST)
-	-rm -fR _build
-	echo done
+install: uninstall build
+	gnome-extensions install -f build/$(UUID).shell-extension.zip
 
 uninstall:
-	rm -rf $(DEST)
+	rm -rf $(HOME)/.local/share/gnome-shell/extensions/$(UUID)
 
-package: _build
-	cd _build ; \
-	zip -qr "$(PKG_NAME)$(ZIPVER).zip" .
-	mv _build/$(PKG_NAME)$(ZIPVER).zip ./
-	-rm -fR _build
-
-_build: all
-	-rm -fR ./_build
-	mkdir _build
-	cp $(BASE_MODULES) $(SRC_MODULES) _build
-	cp $(PREFS_MODULES) _build
-	mkdir -p _build/schemas
-	cp schemas/*.xml _build/schemas
-	mkdir -p _build/locale
-	for l in $(MSGSRC:.po=.mo) ; do \
-		af=_build/`dirname $$l .mo`; \
-		lf=_build/$$l; \
-		mkdir -p $$af; \
-		cp $$l $$lf; \
-	done;
-ifdef VERSION
-	sed -i 's/"version": .*/"version": $(VERSION)/' _build/metadata.json;
-else ifneq ($(strip $(GIT_VER)),)
-	sed -i '/"version": .*/i\ \ "git-version": "$(GIT_VER)",' _build/metadata.json;
-endif
+clean:
+	rm -rf build/

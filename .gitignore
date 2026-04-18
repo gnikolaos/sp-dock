@@ -4,4 +4,6 @@ package.sh
 translateAll.sh
 temp/
 example_old.png
-schemas
+schemas/*.compiled
+schemas/gschemas.compiled
+build
