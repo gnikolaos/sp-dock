@@ -1,11 +1,11 @@
-# sp-tray
+# sp-dock
 
-sp-tray is a very simple GNOME Shell extension that displays current track information in the system tray using Spotify's dbus interface without involving the web API. There are no playback controls and/or album art display, and there never will be. This is intended to be nothing more than a simple label for Spotify only.
+sp-dock is a very simple GNOME Shell extension that displays current track information in the system tray using Spotify's dbus interface without involving the web API. This is intended to be nothing more than a simple label for Spotify only.
 
-Example static text, on the right side without logo:  
-![static](./example_static.png)  
+Example static text, on the right side without logo:
+![static](./example_static.png)
 
-Example marquee text, in the center of the status bar, with logo:  
+Example marquee text, in the center of the status bar, with logo:
 ![marquee](./example_marquee.gif)
 
 ## Features
@@ -22,8 +22,6 @@ Example marquee text, in the center of the status bar, with logo:
 
 - Supports [ncspot](https://github.com/hrkfdn/ncspot)
 
-- Supports GNOME shell versions before _and_ after 45. 
-
 ## Installation
 
 ### Preferably, you should:
@@ -33,15 +31,10 @@ Example marquee text, in the center of the status bar, with logo:
 ### Alternatively, you could:
 
 1. Clone this repo anywhere on your computer
- 
-    - **For gnome-shell versions _before_ 45**: checkout the branch [gnome-44.x](https://github.com/esenliyim/sp-tray/tree/gnome-44.x) before proceeding to the next step. 
 
-2. Run the command `make install`. This will "build" the extension (compile settings and localizations), create a new directory under `~/.local/share/gnome-shell/extensions/`, and copy the files into it. 
+2. Run the command `make install`. This will "build" the extension (compile settings and localizations), create a new directory under `~/.local/share/gnome-shell/extensions/`, and copy the files into it.
 
-3. Restart gnome-shell (xorg) and activate the extension via gnome-tweaks. Gnome-shell cannot be restarted under Wayland, so you may have to log out and back in.
-    - As of shell version 45, your desktop environment might crash while trying to restart gnome-shell under X11 as well, so :tada: :tada: :tada:. Better to just log out and back in either way.
-
-The release version on the official Gnome website will be smaller in size and most likely most stable, but it might not be the most up-to-date version.
+3. Restart gnome-shell.
 
 ## Dependencies
 
@@ -57,17 +50,12 @@ Along with a quick description of the issue/bug, please also include:
 
 - Which package manager you got it from (Snap, Flatpak, AUR, whatever)
 
-## Notes
-
-- Not personally tested with any shell version older than 3.36 because I can't be bothered. If you have tested it and can confirm that it works, let me know.
-    - As of version 18, support for Gnome versions <40 have been removed from the list of supported versions. The last release known to work with those version will be kept available on Gnome's website.
-
-- English, German and Turkish translations are provided by me. If you'd like to contribute new translations, or improvements to existing ones, please contact me or better yet just make a PR.
-
-- If you'd like to request support for your favorite 3rd party Spotify client, feel free to submit a feature request. I'll see what I can do, but no promises.
 
 ## License
 
-GPLv2+
+GPLv3
 
-[extlink]: https://extensions.gnome.org/extension/4472/spotify-tray/
+## Notes
+
+[extlink]: https://extensions.gnome.org/extension/xxxx/sp-dock/
+This is a fork of the original [sp-tray](https://github.com/esenliyim/sp-tray)
