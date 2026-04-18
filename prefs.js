@@ -65,14 +65,10 @@ const SpBuilderScope = GObject.registerClass(
 );
 
 export default class SpDockPrefs extends ExtensionPreferences {
-    constructor(metadata) {
-        super(metadata);
-    }
-
-    getPreferencesWidget() {
-        const settings = this.getSettings();
-
+    fillPreferencesWindow(window) {
+        window._settings = this.getSettings();
         const builder = new Gtk.Builder();
+
         // builder.set_scope(new RegisteredClass(settings));
         builder.set_scope(new SpBuilderScope(settings));
         builder.add_from_file(this.path + "/prefs.xml");
@@ -87,6 +83,6 @@ export default class SpDockPrefs extends ExtensionPreferences {
             ),
         );
 
-        return builder.get_object("prefs_widget");
+        window.add(builder.get_object("prefs_widget"));
     }
 }
