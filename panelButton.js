@@ -43,16 +43,15 @@ const marqueeTextGenerator = function*(label) {
 const SpDockButton = GObject.registerClass(
     { GTypeName: "SpDockButton" },
     class SpDockButton extends PanelMenu.Button {
-        constructor(extensionObject) {
-            this.extensionObject = extensionObject;
-            super._init(null, this.extensionObject.metadata.name);
+        _init(extensionObject) {
+            super._init(null, extensionObject.metadata.name);
 
             this.ui = new Map();
             this._settingSignals = [];
             this._signals = [];
             this.marqueeTimeoutId = null;
 
-            this._initSettings();
+            this._initSettings(extensionObject);
             this._initDbus();
             this._initUi();
 
@@ -61,8 +60,8 @@ const SpDockButton = GObject.registerClass(
             this._loadSnapIcon()
         }
 
-        _initSettings() {
-            this.settings = this.extensionObject.getSettings();
+        _initSettings(extensionObject) {
+            this.settings = extensionObject.getSettings();
 
             // connect relevant settings to the button so that it can be instantly updated when they're changed
             // store the connected signals in an array for easy disconnection later on
