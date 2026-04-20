@@ -21,6 +21,7 @@ import Clutter from "gi://Clutter";
 import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 import GLib from "gi://GLib";
+import Meta from "gi://Meta";
 
 Gio._promisify(Gio.File.prototype, "load_contents_async");
 
@@ -44,7 +45,7 @@ const SpDockButton = GObject.registerClass(
     { GTypeName: "SpDockButton" },
     class SpDockButton extends PanelMenu.Button {
         _init(extensionObject) {
-            super._init(null, extensionObject.metadata.name);
+            super._init(0.0, extensionObject.metadata.name, true);
 
             this.ui = new Map();
             this._settingSignals = [];
@@ -88,6 +89,7 @@ const SpDockButton = GObject.registerClass(
             const box = new St.BoxLayout({
                 style_class: "panel-status-menu-box",
             });
+
             this.ui.set("box", box);
 
             // TODO mess with css to see if I can stop the label from jumping slightly left and right while marquee is on
@@ -101,12 +103,31 @@ const SpDockButton = GObject.registerClass(
                     y_align: Clutter.ActorAlign.CENTER,
                 }),
             );
+
             this.ui.set("icon", this.makeIcon());
+
             this._handleLogoDisplay();
 
-            this._signals.push(this.connect("button-press-event", this.showSpotify.bind(this)));
-
             this.add_child(box);
+        }
+
+        vfunc_event(event) {
+            const type = event.type();
+            // Left-click toggles between Spotify and the previous window
+            if (type === Clutter.EventType.BUTTON_PRESS ||
+                type === Clutter.EventType.TOUCH_BEGIN) {
+                const button = type === Clutter.EventType.BUTTON_PRESS
+                    ? event.get_button()
+                    : 1; // treat touch as left-click
+                if (button === 1 /* left */) {
+                    this.toggleSpotify();
+                    return Clutter.EVENT_STOP;
+                }
+                // Right (3) and middle (2) clicks: ignore for now, may handle in the future.
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            return Clutter.EVENT_PROPAGATE;
         }
 
         makeLabel() {
@@ -410,32 +431,20 @@ const SpDockButton = GObject.registerClass(
             return text;
         }
 
-        // many thanks to mheine's implementation
-        showSpotify() {
-            if (this._spotiWin && this._spotiWin.has_focus()) {
-                // spotify is up and focused
-                if (this._notSpotify) {
-                    // hide spotify and pull up the last active window if possible
-                    Main.activateWindow(this._notSpotify);
-                }
+        toggleSpotify() {
+            const tabList = global.display.get_tab_list(Meta.TabList.NORMAL, null);
+            const spWindow = tabList.find(
+                (w) => w.get_wm_class()?.toLowerCase() === "spotify",
+            );
+            if (!spWindow) {
+                return; // Spotify is closed.
+            }
+            // If it is currently the most-recently-used window, switch to the
+            // previous one. Otherwise, bring it to the front.
+            if (tabList[0] === spWindow && tabList[1]) {
+                Main.activateWindow(tabList[1]);
             } else {
-                // spotify is unfocused or the tray icon has never been clicked before
-                this._spotiWin = this._notSpotify = null;
-                let wins = global.get_window_actors(); // get all open windows
-                for (let win of wins) {
-                    if (typeof win.get_meta_window === "function") {
-                        if (win.get_meta_window().get_wm_class() === "Spotify") {
-                            this._spotiWin = win.get_meta_window(); // mark the spotify window
-                        } else if (win.get_meta_window().has_focus()) {
-                            this._notSpotify = win.get_meta_window(); // mark the window that was active when the button was pressed
-                        }
-
-                        if (this._spotiWin && this._notSpotify) {
-                            break;
-                        }
-                    }
-                }
-                Main.activateWindow(this._spotiWin); // pull up the spotify window
+                Main.activateWindow(spWindow);
             }
         }
 
