@@ -57,5 +57,5 @@ GPLv3
 
 ## Notes
 
-[extlink]: https://extensions.gnome.org/extension/xxxx/sp-dock/
+[extlink]: https://extensions.gnome.org/extension/9763/sp-dock/
 This is a fork of the original [sp-tray](https://github.com/esenliyim/sp-tray)

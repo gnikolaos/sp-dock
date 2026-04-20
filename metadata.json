@@ -11,7 +11,7 @@
     ],
     "url": "https://github.com/gnikolaos/sp-dock",
     "uuid": "sp-dock@gnikolaos.gr",
-    "version": 1,
+    "version": 2,
     "settings-schema": "org.gnome.shell.extensions.sp-dock",
     "gettext-domain": "sp-dock"
 }
