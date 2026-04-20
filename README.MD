@@ -22,6 +22,12 @@ Example marquee text, in the center of the status bar, with logo:
 
 - Supports [ncspot](https://github.com/hrkfdn/ncspot)
 
+- Click controls:
+  - Left-click: Toggle Spotify window
+  - Right-click: Play/Pause toggle
+
+- Mouse-wheel scroll: Up = previous track, Down = next track
+
 ## Installation
 
 ### Preferably, you should:
