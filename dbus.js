@@ -10,6 +10,9 @@ const spotifyDbus = `<node>
     <property name="Metadata" type="a{sv}" access="read"/>
     <property name="Shuffle" type="b" access="read"/>
     <property name="LoopStatus" type="s" access="read"/>
+    <method name="Next"/>
+    <method name="Previous"/>
+    <method name="PlayPause"/>
 </interface>
 </node>`;
 
@@ -314,6 +317,39 @@ const SpDockDbus = class SpDockDbus {
             shuffle: this.proxy.Shuffle,
             loop: this.proxy.LoopStatus,
         };
+    }
+
+    next() {
+        if (!this.proxy) return;
+        try {
+            this.proxy.NextRemote((_result, error) => {
+                if (error) logError(error);
+            });
+        } catch (e) {
+            logError(e);
+        }
+    }
+
+    previous() {
+        if (!this.proxy) return;
+        try {
+            this.proxy.PreviousRemote((_result, error) => {
+                if (error) logError(error);
+            });
+        } catch (e) {
+            logError(e);
+        }
+    }
+
+    playPause() {
+        if (!this.proxy) return;
+        try {
+            this.proxy.PlayPauseRemote((_result, error) => {
+                if (error) logError(error);
+            });
+        } catch (e) {
+            logError(e);
+        }
     }
 };
 

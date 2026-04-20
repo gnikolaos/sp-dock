@@ -114,16 +114,45 @@ const SpDockButton = GObject.registerClass(
         vfunc_event(event) {
             const type = event.type();
             // Left-click toggles between Spotify and the previous window
-            if (type === Clutter.EventType.BUTTON_PRESS ||
-                type === Clutter.EventType.TOUCH_BEGIN) {
+            if (type === Clutter.EventType.BUTTON_PRESS || type === Clutter.EventType.TOUCH_BEGIN) {
                 const button = type === Clutter.EventType.BUTTON_PRESS
                     ? event.get_button()
                     : 1; // treat touch as left-click
+
                 if (button === 1 /* left */) {
                     this.toggleSpotify();
                     return Clutter.EVENT_STOP;
                 }
-                // Right (3) and middle (2) clicks: ignore for now, may handle in the future.
+
+                if (button === 3 /* right */) {
+                    if (this.dbus.spotifyIsActive()) {
+                        this.dbus.playPause();
+                    }
+                    return Clutter.EVENT_STOP;
+                }
+
+                // middle (2) clicks: ignore for now, may handle in the future.
+                return Clutter.EVENT_PROPAGATE;
+            }
+
+            // Mouse-wheel scroll: down -> next track, up -> previous track
+            if (type === Clutter.EventType.SCROLL) {
+                if (!this.dbus.spotifyIsActive()) {
+                    return Clutter.EVENT_PROPAGATE;
+                }
+
+                const direction = event.get_scroll_direction();
+                if (direction === Clutter.ScrollDirection.DOWN) {
+                    this.dbus.next();
+                    return Clutter.EVENT_STOP;
+                }
+
+                if (direction === Clutter.ScrollDirection.UP) {
+                    this.dbus.previous();
+                    return Clutter.EVENT_STOP;
+                }
+
+                // Smooth/horizontal scroll: ignore
                 return Clutter.EVENT_PROPAGATE;
             }
 
