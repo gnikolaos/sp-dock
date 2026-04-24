@@ -1,5 +1,5 @@
 {
-    "description": "Adds a button to the panel that shows information Spotify playback. For bug reports, feature requests, translation contributions, etc., please visit the extension's github page.",
+    "description": "Display and control Spotify playback directly from your top panel. Features track info, playback controls, and quick access to the Spotify player.",
     "name": "sp-dock",
     "shell-version": [
         "45",
