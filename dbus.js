@@ -24,7 +24,6 @@ const supportedClients = [
     {
         name: "Spotify",
         dest: "org.mpris.MediaPlayer2.spotify",
-        signal: null,
         watchId: null,
         isOnline: false, // to keep track of who appears and disappears in case multiple different clients are running
         versions: [
@@ -43,7 +42,6 @@ const supportedClients = [
     {
         name: "ncspot",
         dest: "org.mpris.MediaPlayer2.ncspot",
-        signal: null,
         watchId: null,
         isOnline: false,
         versions: [
@@ -61,31 +59,56 @@ const SpDockDbus = class SpDockDbus {
         this.proxy = null;
         this.panelButton = panelButton;
         this.activeClient = null;
-        this.timeouts = [];
+        this.metadataRetryTimeoutId = null;
+        this.metadataRetryResolve = null;
         this.startWatching();
     }
 
     destroy() {
-        if (this.activeClient && this.proxy) {
-            this.proxy.disconnect(this.activeClient.signal);
+        if (this.proxy) {
+            this.proxy.disconnectObject(this);
         }
-        for (const client in supportedClients) {
+
+        for (const client of supportedClients) {
             if (client.watchId) {
                 Gio.bus_unwatch_name(client.watchId);
+                client.watchId = null;
             }
+
+            client.isOnline = false;
         }
-        for (const to of this.timeouts) {
-            GLib.Source.remove(to);
-        }
+
+        this.clearMetadataRetryTimeout();
+
+        this.proxy = null;
+        this.activeClient = null;
+        this.panelButton = null;
     }
 
     timeout() {
-        return new Promise((resolve) =>
-            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
-                resolve();
+        this.clearMetadataRetryTimeout();
+
+        return new Promise((resolve) => {
+            this.metadataRetryResolve = resolve;
+            this.metadataRetryTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                this.metadataRetryTimeoutId = null;
+                this.metadataRetryResolve = null;
+                resolve(true);
                 return GLib.SOURCE_REMOVE;
-            }),
-        );
+            });
+        });
+    }
+
+    clearMetadataRetryTimeout() {
+        if (this.metadataRetryTimeoutId) {
+            GLib.Source.remove(this.metadataRetryTimeoutId);
+            this.metadataRetryTimeoutId = null;
+        }
+
+        if (this.metadataRetryResolve) {
+            this.metadataRetryResolve(false);
+            this.metadataRetryResolve = null;
+        }
     }
 
     startWatching() {
@@ -108,21 +131,28 @@ const SpDockDbus = class SpDockDbus {
      */
     async onClientAppeared(client) {
         console.debug(`Client ${client.name} appeared on DBus.`);
-        this.makeProxyForClient(client);
+
+        try {
+            this.makeProxyForClient(client);
+        } catch (error) {
+            console.error(error);
+            return;
+        }
+
+        const proxy = this.proxy;
+        const activeClient = this.activeClient;
+
         // This is necessary because the proxy's property cache might be initialized with incomplete values,
         // which needs to be updated after a short delay
-        try {
-            this.shouldRetry(this.proxy.Metadata);
-        } catch (error) {
-            logError(error);
-        }
-        if (!this.proxy.Metadata || this.shouldRetry(this.proxy.Metadata)) {
+        if (this.shouldRetry(proxy.Metadata)) {
             console.debug(`Bad metadata, querying again.`);
             try {
-                this.correctMetadata();
+                await this.correctMetadata(proxy, activeClient);
             } catch (error) {
-                logError(error);
-                this.panelButton.updateLabel(true);
+                console.error(error);
+                if (this.proxy === proxy && this.activeClient === activeClient && this.panelButton) {
+                    this.panelButton.updateLabel(true);
+                }
             }
         } else {
             this.panelButton.updateLabel(true);
@@ -132,9 +162,13 @@ const SpDockDbus = class SpDockDbus {
     shouldRetry(metadata) {
         // Don't check artist field, because it will be null/undefined for podcasts
         return (
-            metadata["mpris:trackid"].unpack() == "" ||
-            metadata["xesam:album"].unpack() == "" ||
-            metadata["xesam:title"].unpack() == ""
+            !metadata ||
+            !metadata["mpris:trackid"] ||
+            metadata["mpris:trackid"].unpack() === "" ||
+            !metadata["xesam:album"] ||
+            metadata["xesam:album"].unpack() === "" ||
+            !metadata["xesam:title"] ||
+            metadata["xesam:title"].unpack() === ""
         );
     }
 
@@ -142,43 +176,57 @@ const SpDockDbus = class SpDockDbus {
      * Attempt to correct the proxy's incomplete Metadata cache
      * Makes 5 attempts at 100ms intervals. Sets the panelButton text if succeeds.
      */
-    async correctMetadata() {
+    async correctMetadata(proxy, client) {
         const maxAttempts = 5;
         let attempt = 1;
         do {
-            const resp = this.queryMetadata();
+            if (this.proxy !== proxy || this.activeClient !== client) {
+                return;
+            }
+
+            const resp = this.queryMetadata(client);
             const unpacked = resp.deepUnpack();
             if (!this.shouldRetry(unpacked)) {
                 console.debug(`Got good metadata on attempt ${attempt}`);
 
+                if (this.proxy !== proxy || this.activeClient !== client || !this.panelButton) {
+                    return;
+                }
+
                 try {
-                    this.proxy.set_cached_property("Metadata", resp);
+                    proxy.set_cached_property("Metadata", resp);
                 } catch (error) {
-                    logError(error);
+                    console.error(error);
                     return;
                 }
                 this.panelButton.updateLabel(true);
                 return;
             } else {
                 try {
-                    this.timeouts.push(await this.timeout());
+                    const completed = await this.timeout();
+                    if (!completed) {
+                        return;
+                    }
                 } catch (e) {
-                    logError(e);
+                    console.error(e);
                 }
                 attempt++;
             }
         } while (attempt <= maxAttempts);
-        this.panelButton.showStopped();
+
+        if (this.proxy === proxy && this.activeClient === client && this.panelButton) {
+            this.panelButton.showStopped();
+        }
     }
 
     /**
      * Explicitly query the metadata property via DBus, instead of using the proxy cache.
      */
-    queryMetadata() {
+    queryMetadata(client) {
         // For some reason the "Get" DBus method returns weird stuff. Had to go with GetAll and
         // pull Metadata out of it instead
         const reply = Gio.DBus.session.call_sync(
-            this.activeClient.dest,
+            client.dest,
             path,
             "org.freedesktop.DBus.Properties",
             "GetAll",
@@ -200,6 +248,11 @@ const SpDockDbus = class SpDockDbus {
         if (this.activeClient && this.activeClient.name === client.name) {
             return;
         }
+
+        if (this.proxy) {
+            this.proxy.disconnectObject(this);
+        }
+
         this.proxy = Gio.DBusProxy.new_for_bus_sync(
             Gio.BusType.SESSION,
             Gio.DBusProxyFlags.GET_INVALIDATED_PROPERTIES,
@@ -210,9 +263,9 @@ const SpDockDbus = class SpDockDbus {
             null,
         );
 
-        client.signal = this.proxy.connect(
+        this.proxy.connectObject(
             "g-properties-changed",
-            (proxy, changed, invalidated) => {
+            (_proxy, changed, _invalidated) => {
                 const props = changed.deepUnpack();
                 // TODO simplify this mess
                 if (
@@ -229,11 +282,10 @@ const SpDockDbus = class SpDockDbus {
                 this.panelButton.updateLabel("Metadata" in props);
                 return;
             },
+            this,
         );
+
         client.isOnline = true;
-        if (this.activeClient) {
-            this.proxy.disconnect(this.activeClient.signal);
-        }
         this.activeClient = client;
     }
 
@@ -249,7 +301,7 @@ const SpDockDbus = class SpDockDbus {
             return;
         }
         if (this.proxy) {
-            this.proxy.disconnect(client.signal);
+            this.proxy.disconnectObject(this);
         }
         this.activeClient = null;
         console.debug(`Client ${client.name} vanished from DBus, looking for another client.`);
@@ -261,7 +313,10 @@ const SpDockDbus = class SpDockDbus {
             console.debug(`Client ${otherClient.name} is still online. Making it the primary.`);
             this.makeProxyForClient(otherClient);
         }
-        this.panelButton.updateLabel(true);
+
+        if (this.panelButton) {
+            this.panelButton.updateLabel(true);
+        }
     }
 
     // Checks if any other supported client is online
@@ -279,15 +334,16 @@ const SpDockDbus = class SpDockDbus {
      * @returns title, artist, album and trackType. Artist is blank when it's a podcast.
      */
     extractMetadataInformation() {
-        if (!this.proxy.Metadata || !this.proxy.Metadata["mpris:trackid"]) {
+        if (!this.proxy || !this.proxy.Metadata || !this.proxy.Metadata["mpris:trackid"]) {
             return null;
         }
         return {
-            trackType: this.getTrackType(this.proxy.Metadata["mpris:trackid"].get_string()[0]),
-            title: this.proxy.Metadata["xesam:title"].unpack(),
-            album: this.proxy.Metadata["xesam:album"].unpack(),
-            artist: this.proxy.Metadata["xesam:artist"].get_strv()[0],
-            url: this.proxy.Metadata["xesam:url"].unpack(),
+            trackType: this.getTrackType(this.proxy.Metadata["mpris:trackid"].unpack()),
+            title: this.proxy.Metadata["xesam:title"] ? this.proxy.Metadata["xesam:title"].unpack() : "",
+            album: this.proxy.Metadata["xesam:album"] ? this.proxy.Metadata["xesam:album"].unpack() : "",
+            // Guarded against undefined xesam:artist for podcasts
+            artist: this.proxy.Metadata["xesam:artist"] ? (this.proxy.Metadata["xesam:artist"].get_strv()[0] || "") : "",
+            url: this.proxy.Metadata["xesam:url"] ? this.proxy.Metadata["xesam:url"].unpack() : "",
         };
     }
 
@@ -323,10 +379,10 @@ const SpDockDbus = class SpDockDbus {
         if (!this.proxy) return;
         try {
             this.proxy.NextRemote((_result, error) => {
-                if (error) logError(error);
+                if (error) console.error(error);
             });
         } catch (e) {
-            logError(e);
+            console.error(e);
         }
     }
 
@@ -334,10 +390,10 @@ const SpDockDbus = class SpDockDbus {
         if (!this.proxy) return;
         try {
             this.proxy.PreviousRemote((_result, error) => {
-                if (error) logError(error);
+                if (error) console.error(error);
             });
         } catch (e) {
-            logError(e);
+            console.error(e);
         }
     }
 
@@ -345,10 +401,10 @@ const SpDockDbus = class SpDockDbus {
         if (!this.proxy) return;
         try {
             this.proxy.PlayPauseRemote((_result, error) => {
-                if (error) logError(error);
+                if (error) console.error(error);
             });
         } catch (e) {
-            logError(e);
+            console.error(e);
         }
     }
 };
