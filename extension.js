@@ -54,7 +54,3 @@ export default class SpDockExtension extends Extension {
         return positions[pos];
     }
 }
-
-// function init() {
-//     return new SpDockExtension();
-// }

@@ -107,7 +107,7 @@ const SpDockDbus = class SpDockDbus {
      * appeared client.
      */
     async onClientAppeared(client) {
-        log(`${client.name} appeared on DBus.`);
+        console.debug(`Client ${client.name} appeared on DBus.`);
         this.makeProxyForClient(client);
         // This is necessary because the proxy's property cache might be initialized with incomplete values,
         // which needs to be updated after a short delay
@@ -117,7 +117,7 @@ const SpDockDbus = class SpDockDbus {
             logError(error);
         }
         if (!this.proxy.Metadata || this.shouldRetry(this.proxy.Metadata)) {
-            log(`Bad metadata, querying again.`);
+            console.debug(`Bad metadata, querying again.`);
             try {
                 this.correctMetadata();
             } catch (error) {
@@ -149,7 +149,7 @@ const SpDockDbus = class SpDockDbus {
             const resp = this.queryMetadata();
             const unpacked = resp.deepUnpack();
             if (!this.shouldRetry(unpacked)) {
-                log(`Got good metadata on attempt ${attempt}`);
+                console.debug(`Got good metadata on attempt ${attempt}`);
 
                 try {
                     this.proxy.set_cached_property("Metadata", resp);
@@ -245,20 +245,20 @@ const SpDockDbus = class SpDockDbus {
         client.isOnline = false;
         // Nothing to do if the client that vanished wasn't the one we were watching
         if (this.proxy && client.dest !== this.proxy.get_name()) {
-            log(`${client.name} vanished from DBus.`);
+            console.debug(`Client ${client.name} vanished from DBus.`);
             return;
         }
         if (this.proxy) {
             this.proxy.disconnect(client.signal);
         }
         this.activeClient = null;
-        log(`${client.name} vanished from DBus, looking for another client.`);
+        console.debug(`Client ${client.name} vanished from DBus, looking for another client.`);
         const otherClient = this.checkForOnlineClients();
         if (!otherClient) {
-            log("No other Spotify clients online.");
+            console.debug("No other Spotify clients online.");
             this.proxy = null;
         } else {
-            log(`${otherClient.name} is still online. Making it the primary.`);
+            console.debug(`Client ${otherClient.name} is still online. Making it the primary.`);
             this.makeProxyForClient(otherClient);
         }
         this.panelButton.updateLabel(true);
