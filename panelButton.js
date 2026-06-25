@@ -48,8 +48,6 @@ const SpDockButton = GObject.registerClass(
             super._init(0.0, extensionObject.metadata.name, true);
 
             this.ui = new Map();
-            this._settingSignals = [];
-            this._signals = [];
             this.marqueeTimeoutId = null;
 
             this._initSettings(extensionObject);
@@ -58,28 +56,25 @@ const SpDockButton = GObject.registerClass(
 
             this.updateLabel(true);
 
-            this._loadSnapIcon()
+            this._loadSnapIcon();
         }
 
         _initSettings(extensionObject) {
             this.settings = extensionObject.getSettings();
 
             // connect relevant settings to the button so that it can be instantly updated when they're changed
-            // store the connected signals in an array for easy disconnection later on
             settingsFields.forEach((field) => {
                 if (field.changeCallback) {
-                    this._settingSignals.push(
-                        this.settings.connect(
-                            `changed::${field.setting}`,
-                            this[field.changeCallback].bind(this),
-                        ),
+                    this.settings.connectObject(
+                        `changed::${field.setting}`,
+                        this[field.changeCallback].bind(this),
+                        this,
                     );
                 } else {
-                    this._settingSignals.push(
-                        this.settings.connect(
-                            `changed::${field.setting}`,
-                            this.updateLabel.bind(this, field.restartsAnimation),
-                        ),
+                    this.settings.connectObject(
+                        `changed::${field.setting}`,
+                        this.updateLabel.bind(this, field.restartsAnimation),
+                        this,
                     );
                 }
             });
@@ -256,17 +251,13 @@ const SpDockButton = GObject.registerClass(
         }
 
         destroy() {
-            // disconnect all signals
-            this._settingSignals.forEach((signal) => {
-                this.settings.disconnect(signal);
-            });
-            this._signals.forEach((signal) => {
-                this.disconnect(signal);
-            });
-            // destroy all ui elements
-            this.ui.get("box").destroy();
+            this.settings.disconnectObject(this);
+            this._stopMarquee();
             this.dbus.destroy();
-            if (this.marqueeTimeoutId) GLib.Source.remove(this.marqueeTimeoutId);
+            this.ui.get("box").destroy();
+            this.ui.clear();
+            this.dbus = null;
+            this.settings = null;
             super.destroy();
         }
 
