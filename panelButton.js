@@ -49,6 +49,7 @@ const SpDockButton = GObject.registerClass(
 
             this.ui = new Map();
             this.marqueeTimeoutId = null;
+            this._snapIconCancellable = new Gio.Cancellable();
 
             this._initSettings(extensionObject);
             this._initDbus();
@@ -188,21 +189,20 @@ const SpDockButton = GObject.registerClass(
                 const file = Gio.File.new_for_path(
                     "/var/lib/snapd/desktop/applications/spotify_spotify.desktop",
                 );
-                const [contents] = await file.load_contents_async(null);
+                const [contents] = await file.load_contents_async(this._snapIconCancellable);
+                // The async read can resolve after the button was destroyed; bail if so.
+                if (!this.ui.size) {
+                    return;
+                }
                 const decoder = new TextDecoder("utf-8");
                 const contentsString = decoder.decode(contents);
                 const matched = contentsString.match(/Icon=(.*)\n/m);
                 if (matched) {
                     const gicon = Gio.icon_new_for_string(matched[1]);
-                    const icon = new St.Icon({
-                        gicon,
-                        style_class: "system-status-icon",
-                        y_align: Clutter.ActorAlign.CENTER,
-                    });
                     this.ui.get("icon").set_gicon(gicon);
                 }
             } catch (error) {
-                // Not a snap install or file not found, ignore
+                // Not a snap install, file not found, or cancelled on destroy: ignore
             }
         }
 
@@ -251,6 +251,8 @@ const SpDockButton = GObject.registerClass(
         }
 
         destroy() {
+            this._snapIconCancellable?.cancel();
+            this._snapIconCancellable = null;
             this.settings.disconnectObject(this);
             this._stopMarquee();
             this.dbus.destroy();
@@ -292,8 +294,14 @@ const SpDockButton = GObject.registerClass(
         }
 
         _updateText(metadata, shouldRestart = false) {
-            const format = this._getFormat(metadata.trackType);
             const button = this.ui.get("label");
+            if (!metadata) {
+                // metadata can be null when PlaybackStatus reports Playing/Paused before
+                // the track id is populated (track transitions, ads). Nothing to show yet.
+                button.set_text("");
+                return;
+            }
+            const format = this._getFormat(metadata.trackType);
             if (!format) {
                 // we got something completely unrecognizable I guess so don't put anything on there
                 button.set_text("");

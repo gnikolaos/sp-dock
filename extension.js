@@ -44,7 +44,7 @@ export default class SpDockExtension extends Extension {
     }
 
     disable() {
-        this.extensionButton.destroy();
+        this.extensionButton?.destroy();
         this.extensionButton = null;
         this.settings = null;
     }

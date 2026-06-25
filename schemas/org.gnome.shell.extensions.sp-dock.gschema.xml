@@ -64,6 +64,7 @@ along with this program.If not, see < http://www.gnu.org/licenses/>. -->
             <default>2</default>
             <summary>icon position in the tray</summary>
             <description>0=left, 1=center, 2=right(default)</description>
+            <range min="0" max="2" />
         </key>
 
         <key type="b" name="hidden-when-paused">
@@ -88,21 +89,25 @@ along with this program.If not, see < http://www.gnu.org/licenses/>. -->
         <key type="i" name="title-max-length">
             <default>35</default>
             <summary>max length of title field</summary>
+            <range min="5" max="200" />
         </key>
 
         <key type="i" name="artist-max-length">
             <default>35</default>
             <summary>max length of artist field</summary>
+            <range min="5" max="200" />
         </key>
 
         <key type="i" name="album-max-length">
             <default>35</default>
             <summary>max length of album field</summary>
+            <range min="5" max="200" />
         </key>
 
         <key type="i" name="marquee-length">
             <default>50</default>
             <summary>length of text when in marquee mode</summary>
+            <range min="5" max="200" />
         </key>
 
         <key type="i" name="logo-position">

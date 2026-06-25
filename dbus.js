@@ -1,6 +1,8 @@
 import GLib from "gi://GLib";
 import Gio from "gi://Gio";
 
+Gio._promisify(Gio.DBusConnection.prototype, "call");
+
 //dbus constants
 const path = "/org/mpris/MediaPlayer2";
 const interfaceName = "org.mpris.MediaPlayer2.Player";
@@ -16,9 +18,13 @@ const spotifyDbus = `<node>
 </interface>
 </node>`;
 
+// Avoid shell main loop stall.
+const QUERY_METADATA_TIMEOUT_MS = 3000;
+// Hard ceiling for untrusted metadata strings. Well above any legitimate.
+const MAX_METADATA_FIELD_LENGTH = 1000;
+
 /**
- * This be the "list" of supported clients. At init, the extensions starts watching the session bus for each
- * supported client.
+ * At init, the extension starts watching the session bus for each supported client.
  */
 const supportedClients = [
     {
@@ -184,7 +190,7 @@ const SpDockDbus = class SpDockDbus {
                 return;
             }
 
-            const resp = this.queryMetadata(client);
+            const resp = await this.queryMetadata(client);
             const unpacked = resp.deepUnpack();
             if (!this.shouldRetry(unpacked)) {
                 console.debug(`Got good metadata on attempt ${attempt}`);
@@ -222,10 +228,10 @@ const SpDockDbus = class SpDockDbus {
     /**
      * Explicitly query the metadata property via DBus, instead of using the proxy cache.
      */
-    queryMetadata(client) {
+    async queryMetadata(client) {
         // For some reason the "Get" DBus method returns weird stuff. Had to go with GetAll and
         // pull Metadata out of it instead
-        const reply = Gio.DBus.session.call_sync(
+        const reply = await Gio.DBus.session.call(
             client.dest,
             path,
             "org.freedesktop.DBus.Properties",
@@ -233,7 +239,7 @@ const SpDockDbus = class SpDockDbus {
             new GLib.Variant("(s)", [interfaceName]),
             new GLib.VariantType("(a{sv})"),
             Gio.DBusCallFlags.NONE,
-            -1,
+            QUERY_METADATA_TIMEOUT_MS,
             null,
         );
         return reply.deepUnpack()[0]["Metadata"];
@@ -337,13 +343,15 @@ const SpDockDbus = class SpDockDbus {
         if (!this.proxy || !this.proxy.Metadata || !this.proxy.Metadata["mpris:trackid"]) {
             return null;
         }
+        const metadata = this.proxy.Metadata;
+        const cap = (value) => value.slice(0, MAX_METADATA_FIELD_LENGTH);
         return {
-            trackType: this.getTrackType(this.proxy.Metadata["mpris:trackid"].unpack()),
-            title: this.proxy.Metadata["xesam:title"] ? this.proxy.Metadata["xesam:title"].unpack() : "",
-            album: this.proxy.Metadata["xesam:album"] ? this.proxy.Metadata["xesam:album"].unpack() : "",
+            trackType: this.getTrackType(metadata["mpris:trackid"].unpack()),
+            title: metadata["xesam:title"] ? cap(metadata["xesam:title"].unpack()) : "",
+            album: metadata["xesam:album"] ? cap(metadata["xesam:album"].unpack()) : "",
             // Guarded against undefined xesam:artist for podcasts
-            artist: this.proxy.Metadata["xesam:artist"] ? (this.proxy.Metadata["xesam:artist"].get_strv()[0] || "") : "",
-            url: this.proxy.Metadata["xesam:url"] ? this.proxy.Metadata["xesam:url"].unpack() : "",
+            artist: metadata["xesam:artist"] ? cap(metadata["xesam:artist"].get_strv()[0] || "") : "",
+            url: metadata["xesam:url"] ? metadata["xesam:url"].unpack() : "",
         };
     }
 
